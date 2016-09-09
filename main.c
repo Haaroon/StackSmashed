@@ -17,8 +17,18 @@ void clearScreen() {
   write(STDOUT_FILENO,CLEAR_SCREE_ANSI,12);
 }
 
+void helpMenu(){
+	printf("> This game can only be played using a keyboard\n");
+	printf("> Lines starting with > are informational\n");
+	sleep(1);
+	printf("> Lines starting with >> expect your input\n");
+	printf("> Enter h for the help menu\n");
+	printf("> Enter s to save\n");
+	sleep(1);
+}
+
 /* Get name from user */
-static int setName(){
+void setName(){
 	printf("> Please enter your name (Max 8 characters) \n> below followed by [Enter] key:\n>> ");
 	fgets(name,10,stdin);
 	// remove new line har
@@ -28,31 +38,25 @@ static int setName(){
 	clearScreen();
 }
 
-int loadSaveGame(){
+void loadSaveGame(){
 	//TODO Load Save Game
 }
 
-int saveGame(){
+void saveGame(){
 	//TODO Save Game
 }
 
 /* starting message */
-static int welcome(){
+void welcome(){
 	printf("********************\n");
 	printf("> Welcome to my text based game\n");
 	//TODO Add a check for the savegame here
 	setName();
 	printf("> Please follow instructions carefully to progress\n");
-	printf("> Lines starting with > are informational\n");
-	printf("> Lines starting with >> expect your input\n");
-	printf("> Enter h for the help menu\n");
-	sleep(1);
-	printf("> This game can only be played using a keyboard\n");
-	printf("> Enter s to save\n");
-	sleep(1);
+	helpMenu();
 	enterToContinue();
+	clearScreen();
 	printf("********************\n");
-	return 0;
 }
 
 /* Main method, duhh */
