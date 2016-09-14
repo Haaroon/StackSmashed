@@ -74,7 +74,7 @@ void showID(char* input){
  	printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n");
 }
 
-int checkStandardCommands(input){
+int checkStandardCommands(char input){
 	if(input == 'H')
 	{
 		helpMenu();
@@ -128,7 +128,7 @@ void mainGame(){
 		{
 			break;
 		}
-		else if (checkStandardCommands(input) == 0) {
+		else if (checkStandardCommands(*input) == 0) {
 			printf("> I dont understand, Try again\n");
 		}
 	}
@@ -154,7 +154,7 @@ void mainGame(){
 			printf("I'm not sure what it is. Do you have an idea?");
 			break;
 		}
-		else if (checkStandardCommands(input) == 0) {
+		else if (checkStandardCommands(*input) == 0) {
 			printf("> I dont understand, Try again\n");
 		}
 	}

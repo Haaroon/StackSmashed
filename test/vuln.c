@@ -1,11 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 
+void lol(char *arg)//char *buff)
+{
+	char buffer[250];
+	strcpy(buffer, arg);
+}
+
 int main(int argc, char** argv) {
 
-	char buffer[150];
-	printf("%p\n", buffer);
-	strcpy(buffer, argv[1]);
-	printf("%s\n", buffer);
+	//char buffer[250];
+	//strcpy(buffer, argv[1]);
+	lol(argv[1]);
 	return 0;
 }
+
