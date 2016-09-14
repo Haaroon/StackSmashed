@@ -1,5 +1,5 @@
-CC=gcc
-CFLAGS=-I.
+CC=gcc -m32
+CFLAGS=-fno-stack-protector -z execstack
 
 main: main.c 
-	$(CC) -o main main.c $(CFLAGS)
+	$(CC) $(CFLAGS) -o main main.c 
