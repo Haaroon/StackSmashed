@@ -133,15 +133,17 @@ void mainGame(){
 
 	while(!responded){
 		getInput();
-		printf("%s\n", input);
 		fflush(stdout);
-		if(*input == "A")
+		if(*input == 'A')
 		{
+			clearScreen();
+			printf(" You chose to attack.\n");
 			printf("> You jumped at the man. He dodged. \n");
 			printf("> He kicked you in the head, you got knocked out...\n");
-			printf("> You woke up, the strange man started into your face.\n");
-			fflush(stdout);			
 			enterToContinue();
+			sleep(3);			
+			printf("> You woke up, the strange man started into your face.\n");		
+			fflush(stdout);	
 			break;
 		}
 		else if(*input == 'T')
@@ -153,28 +155,31 @@ void mainGame(){
 			fflush(stdout);
 		}
 	}
-	fflush(stdout);
-	clearScreen();
-	printf(" You said 'What am I doing here?'\n");
+	//clearScreen();
+	printf("> You said 'What am I doing here?'\n");
 	printf("> He replied 'I found you floating in the sea.\n");
 	printf("> I took you in. Healed your wounds, but I found this.'\n");
 	fflush(stdout);
 	sleep(2);
 	printf("> He held a piece of metal in the air, it had a red light flashing inside of it.\n");
 	printf("> You are confused. You have no idea what it is. How do you respond?\n");
-	printf("> Type B to say 'None of your business', Type T to say your confused.\n");
+	printf("> Type B to say 'None of your business', Type T to say you are confused.\n");
 	fflush(stdout);
 
 	while(!responded){
 		getInput();
 		if(*input == 'B')
 		{
-			printf("> 'Its none of your business. You had no right to take it out'. \n");
+			clearScreen();
+			printf(" You entered B\n");
+			printf("> You shout 'Its none of your business. You had no right to take it out'. \n");
 			break;
 		}
 		else if(*input == 'T')
 		{
-			printf("I'm not sure what it is. Do you have an idea?");
+			clearScreen();
+			printf(" You entered T, You are confused\n");
+			printf("> You say 'I'm not sure what it is. Do you have an idea?'\n");
 			break;
 		}
 		else if (checkStandardCommands(*input) == 0) {
@@ -184,21 +189,25 @@ void mainGame(){
 	}
 	fflush(stdout);
 	sleep(3);
-	clearScreen();
-	printf(" The man replied 'I'm a trained doctor, I seemed wrong.\n> Its a tracking device.'\n");
+	printf("> The man replied 'I'm a trained doctor, It seemed wrong.\n> I believe it is a tracking device.'\n");
 	printf("> You have no idea how it got into you. You have no idea how you got here.\n");
+	sleep(3);
 	printf("> You say 'Did I have any belongings?'\n");
-	printf("> Man said 'Yes, I found many passports and alot of money,\n> but they were drenched.\n> Here, they have dried up now'\n");
+	printf("> Man replied 'Yes, I found many passports and alot of money,\n> but they were drenched. Here, they have dried up now'\n");
 	printf("> You are handed these items. You flick through the passports\n");
 	fflush(stdout);
 	sleep(1);
 	printf("> to find they all have different names. Your confused. You don't even know your name. \n");
-	printf("> 'Thanks, let me know when we reach shore' you say.");
-	printf("> You don't know. Your confused.\n");
-	printf("> Game over. \n");
+	sleep(2);
+	printf("> 'Thanks, let me know when we reach shore' you say.\n");
+	enterToContinue();
+	sleep(5);	
+	printf("> You don't know who you are. You are confused how you got here.\n");
+	printf("> This game is over. To be continued... \n");
 	fflush(stdout);
-	sleep(4);
+	sleep(5);
 	printf("> Press enter to play again\n");
+	enterToContinue();	
 	sleep(15);
 	fflush(stdout);
 }
