@@ -12,34 +12,41 @@ static char name[150] = "HARAMBEEE";
 /* Wait for enter command before continuing */
 int enterToContinue(){
 	printf("> Press enter to continue\n>>");
+	fflush(stdout);
 	char enter = 0;
 	while (enter != '\r' && enter != '\n') { enter = getchar(); }
 }
 
 /* clear the damn screen */
 void clearScreen() {
-  const char* CLEAR_SCREE_ANSI = "\e[1;1H\e[2J";
-  write(STDOUT_FILENO,CLEAR_SCREE_ANSI,12);
+	const char* CLEAR_SCREE_ANSI = "\e[1;1H\e[2J";
+	write(STDOUT_FILENO,CLEAR_SCREE_ANSI,12);
+	fflush(stdout);
 }
 
 void helpMenu(){
 	printf("> This game can only be played using a keyboard\n");
 	printf("> Lines starting with > are informational\n");
+	fflush(stdout);
 	sleep(0);
 	printf("> Lines starting with >> expect your input\n");
 	printf("> Enter H for the help menu\n");
 	printf("> Enter I to view your ID\n");
+	fflush(stdout);
 	sleep(0);
 }
 
 /* Get name from user */
 void setName(){
 	printf("> Please enter your name (Max 8 characters) \n> below followed by [Enter] key:\n>> ");
+	fflush(stdout);
 	gets(name);
+	fflush(stdout);
 	//gname = *name;
 	// remove new line har
 	//state1.name[ strlen(state1.name) - 1 ] = '\0';
 	printf("\n> Welcome %s to the game! \n", name);
+	fflush(stdout);
 	enterToContinue();
 	clearScreen();
 }
@@ -49,9 +56,10 @@ void welcome(){
 	clearScreen();
 	printf("********************\n");
 	printf("> Welcome to my text based game\n");
-	//TODO Add a check for the savegame here
+	fflush(stdout);
 	setName();
-	printf("> Please follow instructions carefully to progress\n");
+	printf(" Please follow instructions carefully to progress\n");
+	fflush(stdout);
 	helpMenu();
 	enterToContinue();
 	clearScreen();
@@ -61,17 +69,21 @@ void welcome(){
 int getInput()
 {
 	printf(">> ");
+	fflush(stdout);
 	scanf("%s", input);
 	printf("%s\n", input);
+	fflush(stdout);
   	return 1;
 }
 
 void showID(char* input){
  	printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n");
+	fflush(stdout);
  	char names[150];
     strcpy(names, input);
     printf("%s\n", names);
  	printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n");
+	fflush(stdout);
 }
 
 int checkStandardCommands(char input){
@@ -91,37 +103,45 @@ int checkStandardCommands(char input){
 void mainGame(){
 	printf("> You see a two doors, which do you choose?\n");
 	printf("> Type L for Left Door, Type R for Right door\n");
+	fflush(stdout);
 	int responded = 0; 
 	while(!responded){
 		getInput();
-		printf("got here\n");
-		printf("%s\n", input);
+		fflush(stdout);
 		if(*input == 'L')
 		{
+			clearScreen();
 			printf("> You took the left door\n");
 			break;
 		}
 		else if(*input ==  'R')
 		{
+			clearScreen();
 			printf("> You took the right door\n");
 			break;
 		}
 		else if (checkStandardCommands(*input) == 0) {
 			printf("> I dont understand, Try again\n");
 		}
+		fflush(stdout);
 	}
-
+	fflush(stdout);
 	sleep(1);
 	printf("> A man approached with a knife in hand. What do you do?\n");
 	printf("> Type A to attack, Type T to talk.\n");
+	fflush(stdout);
 
 	while(!responded){
 		getInput();
-		if(*input == 'A')
+		printf("%s\n", input);
+		fflush(stdout);
+		if(*input == "A")
 		{
 			printf("> You jumped at the man. He dodged. \n");
 			printf("> He kicked you in the head, you got knocked out...\n");
 			printf("> You woke up, the strange man started into your face.\n");
+			fflush(stdout);			
+			enterToContinue();
 			break;
 		}
 		else if(*input == 'T')
@@ -129,18 +149,21 @@ void mainGame(){
 			break;
 		}
 		else if (checkStandardCommands(*input) == 0) {
-			printf("> I dont understand, Try again\n");
+			printf("> I dont understand, Try again\n> ");
+			fflush(stdout);
 		}
 	}
-
+	fflush(stdout);
 	clearScreen();
-	printf("> Wise choice. You said 'What am I doing here?'\n");
+	printf(" You said 'What am I doing here?'\n");
 	printf("> He replied 'I found you floating in the sea.\n");
 	printf("> I took you in. Healed your wounds, but I found this.'\n");
+	fflush(stdout);
 	sleep(2);
-	printf("> He held a piece of metal in the air, it had a red light flashing.\n");
-	printf("> Your confused. You have no idea what it is. How do you respond?");
-	printf("> Type B to say 'None of your business'. Type T to say your confused.\n");
+	printf("> He held a piece of metal in the air, it had a red light flashing inside of it.\n");
+	printf("> You are confused. You have no idea what it is. How do you respond?\n");
+	printf("> Type B to say 'None of your business', Type T to say your confused.\n");
+	fflush(stdout);
 
 	while(!responded){
 		getInput();
@@ -157,21 +180,27 @@ void mainGame(){
 		else if (checkStandardCommands(*input) == 0) {
 			printf("> I dont understand, Try again\n");
 		}
+		fflush(stdout);
 	}
+	fflush(stdout);
 	sleep(3);
 	clearScreen();
-	printf("> The man replied 'I'm a trained doctor, I seemed wrong.\n> Its a tracking device.'\n");
+	printf(" The man replied 'I'm a trained doctor, I seemed wrong.\n> Its a tracking device.'\n");
 	printf("> You have no idea how it got into you. You have no idea how you got here.\n");
 	printf("> You say 'Did I have any belongings?'\n");
 	printf("> Man said 'Yes, I found many passports and alot of money,\n> but they were drenched.\n> Here, they have dried up now'\n");
 	printf("> You are handed these items. You flick through the passports\n");
+	fflush(stdout);
 	sleep(1);
 	printf("> to find they all have different names. Your confused. You don't even know your name. \n");
 	printf("> 'Thanks, let me know when we reach shore' you say.");
 	printf("> You don't know. Your confused.\n");
 	printf("> Game over. \n");
+	fflush(stdout);
 	sleep(4);
 	printf("> Press enter to play again\n");
+	sleep(15);
+	fflush(stdout);
 }
 
 
@@ -181,9 +210,8 @@ int main() {
 		welcome();
 		printf("> %s, You wake up, all wet and flustered.\n", name);
 		printf("> Its dark, it seems you have been injured but patched up.\n");
+		fflush(stdout);
 		mainGame();
-		//while(getInput() && parseCommand());
-		//./ma
 		enterToContinue();
 	}
 	return 0;
