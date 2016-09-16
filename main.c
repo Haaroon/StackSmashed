@@ -34,7 +34,7 @@
 // End colors
 
 static char input[9];
-static char name[150] = "HARAMBEEE";
+static char *name;
 
 void printArrow(){
 	printf(ANSI_COLOR_YELLOW ">> " ANSI_COLOR_RESET);
@@ -66,6 +66,11 @@ void clearScreen() {
 void helpMenu(){
 	stars();
 	printf(ANSI_COLOR_RED " HELP MENU" ANSI_COLOR_RESET "\n");
+	printf("> The aim is simple, find the flag which is on this box\n");
+	printf("> You can access the base64 of this binary by on port 4001\n");
+	printf("> This binary has been compiled using GCC in x86 mode\n");
+	printf("> You can pass the name to the binary as the first argument\n");
+	printf(ANSI_COLOR_RED "> Do not priv esc!" ANSI_COLOR_RESET "\n");
 	printf("> Enter H for the help menu\n");
 	printf("> Enter I to view your ID\n");
 	printf("> This game can only be played using a keyboard\n");
@@ -82,15 +87,19 @@ void helpMenu(){
 }
 
 /* Get name from user */
-void setName(){
-	printf("> Please enter your name (Max 8 characters) \n> below followed by [Enter] key:\n");
-	printArrow();
-	fflush(stdout);
-	gets(name);
-	fflush(stdout);
-	//gname = *name;
-	// remove new line har
-	//state1.name[ strlen(state1.name) - 1 ] = '\0';
+void setName(char *nameG){
+	if(strlen(nameG) <= 1)
+	{
+		printf("> Please enter your name (Max 8 characters) \n> below followed by [Enter] key:\n");
+		printf(ANSI_COLOR_YELLOW ">> " ANSI_COLOR_RESET);
+		fflush(stdout);	
+		scanf(name);
+		fflush(stdout);
+	}
+	else
+	{	
+		name = nameG;
+	}
 	printf("\n> Welcome %s to the game! \n", name);
 	fflush(stdout);
 	enterToContinue();
@@ -98,7 +107,7 @@ void setName(){
 }
 
 /* starting message */
-void welcome(){
+void welcome(char *name){
 	clearScreen();
 	printf(ANSI_COLOR_BLUE  "**************************************************************************" ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED	"    )                                                       (     "ANSI_COLOR_RESET "\n");
@@ -117,14 +126,11 @@ void welcome(){
 	printf(ANSI_COLOR_YELLOW"       \\___|\\__,_||_|_|_| \\___|  |___/\\___//_\\_\\                  "ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_BLUE  "**************************************************************************" ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED""ANSI_COLOR_RESET "\n");                                                                  
-	//stars();
 	printf("> Welcome to my CTF challenge\n");
 	printf("> The aim is simple, find the flag which is on this box\n");
-	printf(ANSI_COLOR_RED "do not priv esc!" ANSI_COLOR_RESET "\n");
 	printf("> Welcome to my text based game\n");
 	fflush(stdout);
-	sleep(1);
-	setName();
+	setName(name);
 	printf(" Please follow instructions carefully to progress\n");
 	fflush(stdout);
 	sleep(2);
@@ -144,7 +150,7 @@ int getInput()
   	return 1;
 }
 
-void showID(char* input){
+void showID(char* inputz){
  	//printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n");
 	//fflush(stdout);
 	stars();
@@ -157,7 +163,7 @@ void showID(char* input){
 	printf(ANSI_COLOR_YELLOW "                  "ANSI_COLOR_RESET "\n");                  
 	fflush(stdout);
  	char names[150];
-    strcpy(names, input);
+    strcpy(names, inputz);
     printf("Name: %s\n", names);
  	//printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n");
 	stars();		
@@ -313,10 +319,23 @@ void mainGame(){
 
 
 /* Main method, duhh */
-int main() {
+int main(int argc, char *argv[]) {
 	while(1){
 		//stars();
-		welcome();
+		if ( argc != 2 ) /* argc should be 2 for correct execution */
+    	{
+        	/* We print argv[0] assuming it is the program name */
+        	//printf( "usage: %s username", argv[0] );
+			char *n = "A";					
+			welcome(n);    	
+		}
+		else if ( argc == 2)
+		{
+			welcome(argv[1]);
+		}
+		else
+		{
+		}
 		printf("> %s, You wake up, all wet and flustered.\n", name);
 		printf("> It is dark, it seems you have been injured but are patched up.\n");
 		fflush(stdout);
