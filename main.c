@@ -100,6 +100,7 @@ void setName(){
 /* starting message */
 void welcome(){
 	clearScreen();
+	printf(ANSI_COLOR_BLUE  "**************************************************************************" ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED	"    )                                                       (     "ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED	" ( /(                                (          (     *   ) )\\ )  "ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED	" )\\())    )     )  (                 )\\         )\\  ` )  /((()/(  "ANSI_COLOR_RESET "\n");
@@ -114,8 +115,12 @@ void welcome(){
 	printf(ANSI_COLOR_YELLOW"    (_)) __|((_)_  _((_)) (_))   | _ ) ((_)((_)\\                  "ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_YELLOW"      | (_ |/ _` || '  \\()/ -_)  | _ \\/ _ \\ \\ /                  "ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_YELLOW"       \\___|\\__,_||_|_|_| \\___|  |___/\\___//_\\_\\                  "ANSI_COLOR_RESET "\n");
+	printf(ANSI_COLOR_BLUE  "**************************************************************************" ANSI_COLOR_RESET "\n");
 	printf(ANSI_COLOR_RED""ANSI_COLOR_RESET "\n");                                                                  
-	stars();
+	//stars();
+	printf("> Welcome to my CTF challenge\n");
+	printf("> The aim is simple, find the flag which is on this box\n");
+	printf(ANSI_COLOR_RED "do not priv esc!" ANSI_COLOR_RESET "\n");
 	printf("> Welcome to my text based game\n");
 	fflush(stdout);
 	sleep(1);
@@ -310,7 +315,7 @@ void mainGame(){
 /* Main method, duhh */
 int main() {
 	while(1){
-		stars();
+		//stars();
 		welcome();
 		printf("> %s, You wake up, all wet and flustered.\n", name);
 		printf("> It is dark, it seems you have been injured but are patched up.\n");
