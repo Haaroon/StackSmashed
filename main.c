@@ -323,16 +323,13 @@ int main(int argc, char *argv[]) {
 		//stars();
 		char* n = " ";
 		if(argc == 2){
-			printf("222222");
 			if (argv[1] != NULL)
 			{	
-				printf("333");
 				welcome(argv[1]);
 			}
 		}
 		else
 		{	
-			printf("4444");
 			welcome(n);
 		}
 		printf("> %s, You wake up, all wet and flustered.\n", name);
