@@ -33,8 +33,8 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 // End colors
 
-static char input[9];
-static char *name;
+char input[9];
+char name[500];
 
 void printArrow(){
 	printf(ANSI_COLOR_YELLOW ">> " ANSI_COLOR_RESET);
@@ -87,18 +87,18 @@ void helpMenu(){
 }
 
 /* Get name from user */
-void setName(char *nameG){
-	if(strlen(nameG) <= 1)
+void setName(char* nameG){
+	if(nameG == " ")
 	{
 		printf("> Please enter your name (Max 8 characters) \n> below followed by [Enter] key:\n");
 		printf(ANSI_COLOR_YELLOW ">> " ANSI_COLOR_RESET);
 		fflush(stdout);	
-		scanf(name);
+		scanf("%s", name);
 		fflush(stdout);
 	}
 	else
 	{	
-		name = nameG;
+		strcpy(name, nameG);
 	}
 	printf("\n> Welcome %s to the game! \n", name);
 	fflush(stdout);
@@ -215,7 +215,6 @@ void mainGame(){
 	printf("> A man approches with a knife in hand. What do you do?\n");
 	printf(ANSI_COLOR_CYAN "> Type A to attack, Type T to talk." ANSI_COLOR_RESET "\n");
 	fflush(stdout);
-
 	while(!responded){
 		getInput();
 		fflush(stdout);
@@ -322,19 +321,19 @@ void mainGame(){
 int main(int argc, char *argv[]) {
 	while(1){
 		//stars();
-		if ( argc != 2 ) /* argc should be 2 for correct execution */
-    	{
-        	/* We print argv[0] assuming it is the program name */
-        	//printf( "usage: %s username", argv[0] );
-			char *n = "A";					
-			welcome(n);    	
-		}
-		else if ( argc == 2)
-		{
-			welcome(argv[1]);
+		char* n = " ";
+		if(argc == 2){
+			printf("222222");
+			if (argv[1] != NULL)
+			{	
+				printf("333");
+				welcome(argv[1]);
+			}
 		}
 		else
-		{
+		{	
+			printf("4444");
+			welcome(n);
 		}
 		printf("> %s, You wake up, all wet and flustered.\n", name);
 		printf("> It is dark, it seems you have been injured but are patched up.\n");
