@@ -1,1 +1,0 @@
-gcc -fno-stack-protector -z execstack -o vuln vuln.c
